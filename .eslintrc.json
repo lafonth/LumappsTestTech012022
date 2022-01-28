@@ -20,6 +20,7 @@
 	  "react/jsx-indent": [2, "tab"],
 	  "react/jsx-indent-props": [2, "tab"],
 	  "no-tabs": "off",
-	  "max-len": "off"
+	  "max-len": "off",
+    "linebreak-style": 0
     }
   }
