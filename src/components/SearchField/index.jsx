@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router';
 import {
   TextField, Theme, Icon, Size, FlexBox, Button, Emphasis,
 } from '@lumx/react';
@@ -6,19 +7,23 @@ import { mdiMagnify } from '@lumx/icons';
 
 const SearchField = () => {
   const [inputString, setInputString] = useState('');
-
-  const searchItems = (searchString) => {
-    console.log(searchString);
-    // alert(`Search:${searchString.toString()}`);
+  const history = useHistory();
+  const searchItems = (search) => {
+    if (search) {
+      history.push({
+        pathname: `/SearchResult/${search}`,
+      });
+    }
   };
 
   return (
 	<FlexBox wrap="False">
-		<Button theme={Theme.dark} emphasis={Emphasis.low} onClick={searchItems(inputString)}>
+		{/* <Link to={`/SearchResult/${inputString}`}> */}
+		<Button theme={Theme.dark} emphasis={Emphasis.low} onClick={() => searchItems(inputString)}>
 			<Icon icon={mdiMagnify} size={Size.m} />
 		</Button>
+		{/* </Link> */}
 		<TextField
-			clearButtonProps={{ label: 'Clear' }}
 			theme={Theme.dark}
 			placeholder="Search..."
 			onKeyPress={(e) => e.key === 'Enter' && searchItems(inputString)}

@@ -7,7 +7,7 @@ import {
   Route,
 } from 'react-router-dom';
 import Header from '../components/Header';
-import Search from '../components/Search';
+import Home from '../components/Home';
 import Hero from '../components/Hero';
 import SearchResult from '../components/SearchResult';
 
@@ -21,7 +21,7 @@ function App() {
 					exact
 					path="/"
 				>
-					<Search />
+					<Home />
 				</Route>
 				<Route
 					exact
@@ -31,7 +31,7 @@ function App() {
 				</Route>
 				<Route
 					exact
-					path="/Search/:searchString"
+					path="/SearchResult/:searchString"
 				>
 					<SearchResult />
 				</Route>

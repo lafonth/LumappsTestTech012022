@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Search = () => (
+const Home = () => (
 	<section className="lumx-spacing-padding-horizontal-huge" />
 );
 
-export default Search;
+export default Home;

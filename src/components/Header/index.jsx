@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlexBox, Alignment } from '@lumx/react';
+import { FlexBox } from '@lumx/react';
 import { NavLink } from 'react-router-dom';
 import SearchField from '../SearchField';
 

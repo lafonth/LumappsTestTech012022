@@ -1,16 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { FlexBox } from '@lumx/react';
 import HeroThumbnail from '../HeroThumbnail';
+import { get } from '../../api';
+
+import './index.scss';
+
 
 const SearchResult = () => {
   const { searchString } = useParams();
-  // use API to get a list of result based on name
-  const heroIds = [1, 2, 3, 5, 8, 45]; // list of ID of heroes found by the API, maybe get the full object to avoid an other call later?
-  const listHeros = heroIds.map((id) => <li><HeroThumbnail heroId={id} /></li>);
+  const [searchResult, setSearchResult] = useState(0);
+
+  useEffect(() => {
+    const fetchHeroData = async () => {
+      try {
+        get('/characters', { nameStartsWith: searchString }).then((response) => {
+          console.log(response.data.data.results);
+          if (response.data.data.results.length > 0) {
+            setSearchResult(response.data.data.results);
+          }
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (searchString) {
+      fetchHeroData();
+    }
+  }, [searchString]);
+  const listHeros = searchResult === 0 ? (
+	<HeroThumbnail />
+  ) : Object.values(searchResult).map((data) => {
+    const imgURL = (data.thumbnail.path && data.thumbnail.extension) ? `${data.thumbnail.path}.${data.thumbnail.extension}` : '';
+    return (
+	<HeroThumbnail heroDescription={data.description} heroName={data.name} heroId={data.id} heroImgURL={imgURL} />
+    );
+  });
+
+
   return (
-	<ul>
+	<FlexBox wrap="true">
 		{listHeros}
-	</ul>
+	</FlexBox>
   );
 };
 
