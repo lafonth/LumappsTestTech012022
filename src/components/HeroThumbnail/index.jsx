@@ -10,9 +10,7 @@ import './index.scss';
 
 const HeroThumbnail = ({
   heroData,
-}) => {
-  const imgURL = (heroData.thumbnail.path && heroData.thumbnail.extension) ? `${heroData.thumbnail.path}.${heroData.thumbnail.extension}` : '';
-  return (
+}) => (
 	<div className="heroItem" key={heroData.id} wrap="false">
 		<Link
 			className="imageLink"
@@ -23,7 +21,7 @@ const HeroThumbnail = ({
 			  },
 			  }}
 		>
-			<Thumbnail image={imgURL} alt="XL" size={Size.xl} />
+			<Thumbnail image={heroData.imgURL} alt="XL" size={Size.xl} />
 		</Link>
 		<div className="contentHero">
 			<Link
@@ -52,8 +50,7 @@ const HeroThumbnail = ({
 			</Link>
 		</div>
 	</div>
-  );
-};
+);
 
 
 HeroThumbnail.propTypes = {

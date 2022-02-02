@@ -1,13 +1,16 @@
 .heroDetail{
     display: grid;
     grid-gap: 25px;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr 256px;
     grid-template-rows: 1fr auto;
     padding: 50px;
     .latestComicsContainer{
-        border: 1px solid black
+        border: 3px solid black
     }
     .justifiedText{
         text-align: justify;
+    }
+    .imgHero{
+        justify-self: end;
     }
 }

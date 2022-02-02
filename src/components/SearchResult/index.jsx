@@ -27,23 +27,12 @@ const SearchResult = () => {
       fetchHeroData();
     }
   }, [searchString]);
-  // const listHeros = searchResult === 0 ? (
-  // <HeroThumbnail />
-  // ) : Object.values(searchResult).map((data) => {
-  //   const imgURL = (data.thumbnail.path && data.thumbnail.extension) ? `${data.thumbnail.path}.${data.thumbnail.extension}` : '';
-  //   // const heroData = {
-  //   //   id: data.id,
-  //   //   name: data.name,
-  //   //   description: data.description,
-  //   //   imgURL,
-  //   // };
-  //   const heroData = data;
-  //   return (
-  // <HeroThumbnail heroData={heroData} />
-  //   );
-  // });
 
-  const listHeros = Object.values(searchResult).map((data) => (<HeroThumbnail key={data.id} heroData={data} />));
+  const listHeros = Object.values(searchResult).map((data) => {
+    const fullData = data;
+    fullData.imgURL = (data.thumbnail.path && data.thumbnail.extension) ? `${data.thumbnail.path}.${data.thumbnail.extension}` : '';
+    return (<HeroThumbnail key={data.id} heroData={fullData} />);
+  });
 
 
   return (
