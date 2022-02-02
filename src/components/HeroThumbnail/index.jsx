@@ -3,54 +3,76 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import {
-  FlexBox,
-  Size, Thumbnail,
+  Size, Thumbnail, Button,
 } from '@lumx/react';
 
-// import { Card } from 'react-bootstrap';
 import './index.scss';
 
 const HeroThumbnail = ({
-  heroId, heroName, heroDescription, heroImgURL,
-}) => (
-	<FlexBox className="heroItem" key={heroId} wrap="false">
+  heroData,
+}) => {
+  const imgURL = (heroData.thumbnail.path && heroData.thumbnail.extension) ? `${heroData.thumbnail.path}.${heroData.thumbnail.extension}` : '';
+  return (
+	<div className="heroItem" key={heroData.id} wrap="false">
 		<Link
 			className="imageLink"
-			to={`/Hero/${heroId}`}
+			to={{
+			  pathname: `/Hero/${heroData.id}`,
+			  state: {
+			    heroData,
+			  },
+			  }}
 		>
-			<Thumbnail image={heroImgURL} alt="XL" size={Size.xl} />
+			<Thumbnail image={imgURL} alt="XL" size={Size.xl} />
 		</Link>
 		<div className="contentHero">
 			<Link
-				to={`/Hero/${heroId}`}
+				to={{
+				  pathname: `/Hero/${heroData.id}`,
+				  state: {
+				    heroData,
+				  },
+				  }}
+				  className="lumx-typography-display1"
 			>
-				<h1>
-					{heroName}
-				</h1>
+				{heroData.name}
 			</Link>
-			<br />
-			{'Description : '}
-			<div>
-				{heroDescription}
+			<div className="heroDescription">
+				{heroData.description}
 			</div>
+			<Link
+				to={{
+				  pathname: `/Hero/${heroData.id}`,
+				  state: {
+					  heroData,
+				  },
+				}}
+			>
+				<Button>See more details</Button>
+			</Link>
 		</div>
-	</FlexBox>
-);
+	</div>
+  );
+};
 
 
 HeroThumbnail.propTypes = {
-  heroId: PropTypes.number,
-  heroName: PropTypes.string,
-  heroDescription: PropTypes.string,
-  heroImgURL: PropTypes.string,
+  heroData: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    description: PropTypes.string,
+    imgURL: PropTypes.string,
+	  }),
 };
 
 
 HeroThumbnail.defaultProps = {
-  heroId: 0,
-  heroName: '',
-  heroDescription: '',
-  heroImgURL: '',
+  heroData: {
+    id: 0,
+    name: '',
+    description: '',
+    imgURL: '',
+  },
 };
 
 export default HeroThumbnail;

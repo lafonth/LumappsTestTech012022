@@ -1,0 +1,13 @@
+.heroDetail{
+    display: grid;
+    grid-gap: 25px;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr auto;
+    padding: 50px;
+    .latestComicsContainer{
+        border: 1px solid black
+    }
+    .justifiedText{
+        text-align: justify;
+    }
+}

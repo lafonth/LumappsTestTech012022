@@ -15,7 +15,6 @@ const SearchResult = () => {
     const fetchHeroData = async () => {
       try {
         get('/characters', { nameStartsWith: searchString }).then((response) => {
-          console.log(response.data.data.results);
           if (response.data.data.results.length > 0) {
             setSearchResult(response.data.data.results);
           }
@@ -28,14 +27,23 @@ const SearchResult = () => {
       fetchHeroData();
     }
   }, [searchString]);
-  const listHeros = searchResult === 0 ? (
-	<HeroThumbnail />
-  ) : Object.values(searchResult).map((data) => {
-    const imgURL = (data.thumbnail.path && data.thumbnail.extension) ? `${data.thumbnail.path}.${data.thumbnail.extension}` : '';
-    return (
-	<HeroThumbnail heroDescription={data.description} heroName={data.name} heroId={data.id} heroImgURL={imgURL} />
-    );
-  });
+  // const listHeros = searchResult === 0 ? (
+  // <HeroThumbnail />
+  // ) : Object.values(searchResult).map((data) => {
+  //   const imgURL = (data.thumbnail.path && data.thumbnail.extension) ? `${data.thumbnail.path}.${data.thumbnail.extension}` : '';
+  //   // const heroData = {
+  //   //   id: data.id,
+  //   //   name: data.name,
+  //   //   description: data.description,
+  //   //   imgURL,
+  //   // };
+  //   const heroData = data;
+  //   return (
+  // <HeroThumbnail heroData={heroData} />
+  //   );
+  // });
+
+  const listHeros = Object.values(searchResult).map((data) => (<HeroThumbnail key={data.id} heroData={data} />));
 
 
   return (

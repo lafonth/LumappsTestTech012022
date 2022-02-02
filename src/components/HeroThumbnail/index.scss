@@ -1,18 +1,32 @@
 .heroItem{
-    flex: 1 0 90%;
-    border: 2px solid black;
+    flex: 0 1 90%;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    border: 5px solid black;
     padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    margin-left: 20px;
-    margin-right: 20px;
-    border-radius:20px;
+    padding-left: 20px;
+    margin: 20px 10% 5px 10%;
+    a{
+        text-decoration: none;
+        font-size: 2em;
+        font-weight: bold;
+        color: black
+    }
+    .imageLink{
+        // margin-right: 15px;
+        align-self: top;
+    }
+    .contentHero{
+        padding: 0px 5px 5px 5px ;
+        // display: grid;
+        // grid-template-rows: auto 1fr 50px;
+    }
+    .heroDescription{
+        margin-bottom: 10px;
+    }
+    .detailButton{
+        background-color: midnightblue;
+        color: white;
+    }
 }
 
-.imageLink{
-    flex-grow: 0;
-}
-
-.contentHero{
-    padding: 5px;
-}
