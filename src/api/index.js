@@ -6,7 +6,7 @@ const toHash = timeStamp + process.env.REACT_APP_MARVEL_API_PRIVATE_KEY + proces
 const hash = md5(toHash);
 
 const instance = axios.create({
-  timeout: 5000,
+  timeout: 10000,
   baseURL: 'https://gateway.marvel.com:443/v1/public',
 });
 
