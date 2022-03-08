@@ -1,5 +1,4 @@
-# LumApps Frontend Test
+# React Marvel API
 
-### Introduction
-
-This is my contribution to LumApps technical test.
+My first application using React.
+Usage of D3.js for testing the library.
